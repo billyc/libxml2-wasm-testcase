@@ -1,5 +1,17 @@
-# Vue 3 + TypeScript + Vite
+# Debugging libxml2-wasm
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This repo was created with 
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+- npm create vue@latest
+- Chose a Vue project with Typescript
+
+with only necessary modifications to test libxml2-wasm and create a dummy Worker 
+which tries to load the library and 
+
+The file `src/LIBXML2WASMEventStreamer.worker.ts` has the offending code which
+tries to load the library and post a simple message to the app. If you comment out the `XmlDocument.parseString()` call, the worker behaves normally instead of 
+hanging and never returning.
+
+The file `src/App.vue` contains the brief GUI code; the `mounted()` method has a few 
+console.log statements to document spawning the worker and waiting for a result.
+

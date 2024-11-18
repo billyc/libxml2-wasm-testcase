@@ -55,7 +55,7 @@ export default MyComponent;
 
 <style scoped>
 h2 {
-  color: yellow;
+  color: orange;
 }
 
 .logo {
